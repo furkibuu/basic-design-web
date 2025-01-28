@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= serverName %></title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Sunucu Başlık ve Menü -->
+    <div class="server-header">
+      <div class="server-name" id="serverName">
+        <h1><%= serverName %></h1>
+        <div id="serverMenu" class="server-menu">
+          <ul>
+            <li><a href="#">Sunucu Ayarları</a></li>
+            <li><a href="#">Sunucudan Çık</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kanallar Bölümü -->
+    <div class="channels-section">
+      <h2>Kanallar</h2>
+      <div id="channels">
+        <p>Hiç kanal yok. Kanal ekleyin!</p>
+      </div>
+
+      <!-- Kanal Ekleme Formu -->
+      <form id="channelForm">
+        <label for="channelName">Kanal Adı:</label>
+        <input type="text" id="channelName" placeholder="Kanal adı girin" required />
+        <select id="channelType">
+          <option value="text">Yazı Kanalı</option>
+          <option value="voice">Ses Kanalı</option>
+        </select>
+        <button type="button" id="addChannel" class="btn btn-success">Kanal Ekle</button>
+      </form>
+    </div>
+
+    <!-- Ana Sayfaya Dön Butonu -->
+    <a href="/" class="btn btn-secondary">Ana Sayfaya Dön</a>
+  </div>
+
+  <!-- Sunucu Başlığı ve Menü Açılır Efekti -->
+  <script>
+    document.getElementById("serverName").addEventListener("click", () => {
+      const menu = document.getElementById("serverMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    });
+
+    document.getElementById("addChannel").addEventListener("click", () => {
+      const channelName = document.getElementById("channelName").value.trim();
+      const channelType = document.getElementById("channelType").value;
+      if (!channelName) return alert("Kanal adı gerekli!");
+
+      const channelList = document.getElementById("channels");
+      const newChannel = document.createElement("div");
+      newChannel.className = `channel ${channelType}`;
+      newChannel.innerText = `${channelType === "text" ? "📄" : "🔊"} ${channelName}`;
+      channelList.appendChild(newChannel);
+
+      document.getElementById("channelName").value = "";
+    });
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #36393f;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      margin: 0 auto;
+      max-width: 1200px;
+      padding: 20px;
+    }
+
+    .server-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      background-color: #2f3136;
+      border-radius: 8px;
+    }
+
+    .server-name {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .server-name h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .server-menu {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background-color: #2f3136;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .server-menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .server-menu ul li {
+      margin: 10px 0;
+    }
+
+    .server-menu ul li a {
+      color: #7289da;
+      text-decoration: none;
+    }
+
+    .server-menu ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .channels-section {
+      margin-top: 20px;
+    }
+
+    .channels-section h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    #channels {
+      margin-bottom: 20px;
+    }
+
+    .channel {
+      padding: 10px;
+      margin: 5px 0;
+      background-color: #40444b;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      color: #b9bbbe;
+    }
+
+    .channel.text {
+      background-color: #3ba55c;
+    }
+
+    .channel.voice {
+      background-color: #7289da;
+    }
+
+    #channelForm {
+      margin-top: 20px;
+    }
+
+    #channelForm input,
+    #channelForm select {
+      padding: 10px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #2f3136;
+      color: #b9bbbe;
+    }
+
+    #channelForm button {
+      padding: 10px;
+      background-color: #3ba55c;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+
+    #channelForm button:hover {
+      background-color: #349e47;
+    }
+
+    .btn {
+      padding: 10px;
+      background-color: #7289da;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #5a6e99;
+    }
+
+    .btn-secondary {
+      background-color: #40444b;
+    }
+  </style>
+</body>
+</html>
