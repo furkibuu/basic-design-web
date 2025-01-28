@@ -4,4 +4,6 @@
 <h5>Express.js / Node.js/ Html / Css</h5>
 
 <h2>Görseller</h2>
-![image](https://github.com/user-attachments/assets/582d9925-a5bb-44c3-937c-75850cbcca65)
+
+![image](https://github.com/user-attachments/assets/dcaebe62-84f2-464d-b626-221df2d02cd2)
+
